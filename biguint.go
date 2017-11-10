@@ -245,6 +245,17 @@ func (b1 biguint) divby(b2 biguint) (biguint, bool) {
 	return ans.z9(), true
 }
 
+// exp is biguint exponentiation.
+func (b biguint) exp(e biguint) biguint {
+	bigzero := biguint{0}
+	bigone := biguint{1}
+	if e.equal(bigzero) {
+		return bigone
+	} else {
+		return b.times(b.exp(e.subtract(bigone)))
+	}
+}
+
 // strToBig converts a string of digits to a biguint.
 func strToBig(s string) (biguint, error) {
 	bi := make(biguint, len(s))

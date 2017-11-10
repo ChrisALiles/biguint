@@ -51,6 +51,16 @@ func Divide(str1, str2 string) (string, error) {
 	return ans.String(), nil
 }
 
+// Exp returns the result of a biguint raised to a biguint power.
+func Exp(str1, str2 string) (string, error) {
+	nums, err := cnvargs(str1, str2)
+	if err != nil {
+		return "", err
+	}
+	res := nums[0].exp(nums[1])
+	return res.String(), nil
+}
+
 // cnvargs converts the arguments - slice of strings (of integers) - into a slice of biguints.
 func cnvargs(strn ...string) ([]biguint, error) {
 	if len(strn) < 2 {
