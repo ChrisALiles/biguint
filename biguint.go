@@ -5,7 +5,6 @@ package biguint
 // I resisted the urge to call it "bigunit" with great difficulty.
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -248,7 +247,6 @@ func (b1 biguint) divby(b2 biguint) (biguint, bool) {
 
 // exp is biguint exponentiation.
 func (b biguint) exp(e biguint) biguint {
-	fmt.Println("Into exp")
 	bigzero := biguint{0}
 	bigone := biguint{1}
 	rslt := biguint{1}
