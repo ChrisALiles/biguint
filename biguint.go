@@ -5,6 +5,7 @@ package biguint
 // I resisted the urge to call it "bigunit" with great difficulty.
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -247,13 +248,21 @@ func (b1 biguint) divby(b2 biguint) (biguint, bool) {
 
 // exp is biguint exponentiation.
 func (b biguint) exp(e biguint) biguint {
+	fmt.Println("Into exp")
 	bigzero := biguint{0}
 	bigone := biguint{1}
-	if e.equal(bigzero) {
-		return bigone
-	} else {
-		return b.times(b.exp(e.subtract(bigone)))
+	rslt := biguint{1}
+	count := e
+	//	if e.equal(bigzero) {
+	//		return bigone
+	//	} else {
+	//		return b.times(b.exp(e.subtract(bigone)))
+	//	}
+	for !count.equal(bigzero) {
+		rslt = rslt.times(rslt)
+		count = count.subtract(bigone)
 	}
+	return rslt
 }
 
 // strToBig converts a string of digits to a biguint.
