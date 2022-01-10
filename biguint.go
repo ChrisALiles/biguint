@@ -246,18 +246,15 @@ func (b1 biguint) divby(b2 biguint) (biguint, bool) {
 }
 
 // exp is biguint exponentiation.
+//TODO much too slow with very large exponents
 func (b biguint) exp(e biguint) biguint {
 	bigzero := biguint{0}
 	bigone := biguint{1}
 	rslt := biguint{1}
 	count := e
-	//	if e.equal(bigzero) {
-	//		return bigone
-	//	} else {
-	//		return b.times(b.exp(e.subtract(bigone)))
-	//	}
+
 	for !count.equal(bigzero) {
-		rslt = rslt.times(rslt)
+		rslt = rslt.times(b)
 		count = count.subtract(bigone)
 	}
 	return rslt
