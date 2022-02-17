@@ -251,7 +251,8 @@ func (b biguint) exp(e biguint) biguint {
 	bigzero := biguint{0}
 	bigone := biguint{1}
 	rslt := biguint{1}
-	count := e
+	count := make(biguint, len(e))
+	count = e
 
 	for !count.equal(bigzero) {
 		rslt = rslt.times(b)
